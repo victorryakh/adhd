@@ -1,0 +1,28 @@
+[project]
+name = "adhd"
+version = "0.2.0"
+description = "ADHD — parallel divergent ideation for Hermes Agent (adapts UditAkhourii/adhd)"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "victorryakh"}]
+dependencies = []
+
+# Pip-installed plugins need to declare their entry point. The
+# directory form (plugin.yaml + __init__.py) doesn't strictly need
+# this — Hermes finds it via ~/.hermes/plugins/ — but providing it
+# makes the plugin pip-installable.
+[project.entry-points."hermes_agent.plugins"]
+adhd = "adhd_plugin:register"
+
+# Mirror the capabilities block from plugin.yaml so pip installs
+# get the same consent screen.
+[project.entry-points."hermes_agent.plugin_capabilities"]
+"adhd.llm.model_override" = "adhd_plugin:register"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["adhd_plugin", "adhd_plugin.packs", "adhd_plugin.tests"]
+include-package-data = true

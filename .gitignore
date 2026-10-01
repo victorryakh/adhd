@@ -2,3 +2,13 @@ node_modules
 dist
 .env
 *.log
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+build/
+_dbg*.py
+HERMES_PORT_NOTES.md

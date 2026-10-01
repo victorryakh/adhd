@@ -1,0 +1,29 @@
+name: adhd
+version: 0.2.0
+manifest_version: 2
+api_version: 1
+description: |
+  ADHD — parallel divergent ideation for Hermes. Fans out N isolated
+  branches under different cognitive frames (regulator, biology,
+  speedrunner, 10-year-old, $0 budget), scores on novelty/viability/fit,
+  clusters by underlying angle, prunes traps, and deepens the survivors.
+  Same tree-of-thought-with-pruning loop as UditAkhourii/adhd, but
+  re-implemented as a native Hermes plugin: LLM traffic goes through
+  ctx.llm (no SDK dependency), tools are registered for the model, and
+  /adhd is exposed as a slash command in every session.
+author: victorryakh (adapted from UditAkhourii/adhd)
+license: MIT
+homepage: https://github.com/victorryakh/adhd
+tags: [brainstorm, divergent-thinking, ideation, tree-of-thought]
+provides_tools:
+  - adhd.run
+capabilities:
+  - llm.model_override
+config_schema:
+  frames_per_run: {type: int, default: 5, description: "How many cognitive frames per run"}
+  ideas_per_frame: {type: int, default: 6, description: "Ideas generated per frame"}
+  top_k: {type: int, default: 3, description: "How many top ideas to deepen"}
+  concurrency: {type: int, default: 4, description: "Maximum parallel LLM calls"}
+  code_mode: {type: bool, default: true, description: "Bias frame selection toward engineering"}
+  strip_anchors: {type: bool, default: true, description: "Strip incidental anchors before diverge pass"}
+  default_pack: {type: str, default: "core", description: "Frame pack to draw from by default"}
